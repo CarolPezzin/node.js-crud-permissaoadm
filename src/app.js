@@ -1,6 +1,7 @@
 import express from "express";
 import "dotenv/config";
 import userRouter from "./routes/users.routes";
+import { startDatabase } from "./database";
 
 const app = express();
 app.use(express.json());
@@ -11,10 +12,11 @@ app.get("/", (req, res) => {
 
 app.use("/users", userRouter);
 
-const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`server is running at port ${PORT}`);
+
+app.listen(3000, () => {
+  console.log(`server is running at port ${3000}`);
+  startDatabase()
 });
 
 export default app;

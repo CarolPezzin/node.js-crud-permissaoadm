@@ -1,12 +1,17 @@
 import updateUserService from "../services/updateUser.services";
 
-const updateUserController = (request, response) => {
-    const {id, updated_at} = request.params
+const updateUserController = async (request, response) => {
+    const {id} = request.params
     const {name,email} = request.body
 
-    const updateUser = updateUserService(id, name, email, updated_at)
-    console.log(updateUser)
-    return response.json(updateUser)
+    try {
+        const updateUser = await updateUserService(id, name, email)
+        return response.json(updateUser)
+        
+    } catch (error) {
+        return response.status(400).json(error.message)
+    }
+
 }
 
 export default updateUserController

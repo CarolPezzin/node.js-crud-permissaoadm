@@ -1,5 +1,5 @@
 import users from "../database"
-
+//middleware em desuso apos conexao com db.
 const verifyEmailAvailabilityMiddleware = 
 (request, response, next) => {
     const { email } = request.body

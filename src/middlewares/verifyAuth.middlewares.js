@@ -1,18 +1,16 @@
 import users from "../database"
 
 const verifyAuthMiddleware = (request, response, next) => {
-    const {isAdmin} = request.body
+    const {isAdmin} = request.query
 
-    const isAdminUser = users.find(user => user.isAdmin === isAdmin )
-    
-    if(isAdminUser === false){
+    if(isAdmin === false){
         return response
-            .status(400)
-            .json({
-                message: "Access Denied"
-            }) 
+        .status(400)
+        .json({
+            message: "This email address is already being used"
+        })
     }
-    next();     
+    next();
    
 }
 
